@@ -12,7 +12,7 @@ import {
 import Navbar from "../../../components/Navbar/Navbar";
 import Footer from "../../../components/Footer/Footer";
 import { homeConfig } from "./homeConfig.js";
-import IdeaImg from "../../../assets/ideaa.jpg";
+import IdeaImg from "../../../assets/ideaa.png";
 import AboutUsImg from "../../../assets/abou.webp";
 
 const TestimonialCard = ({ image, quote, name, position, rating }) => (
