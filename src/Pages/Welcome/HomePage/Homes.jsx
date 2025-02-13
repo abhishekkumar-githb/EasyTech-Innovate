@@ -200,7 +200,7 @@ const HomePage = () => {
       </div>
 
       {/* Pricing Section */}
-      <div
+      {/* <div
         ref={pricingRef}
         className="bg-gradient-to-r from-[#0A0A0A] via-[#1C3144]/50 to-[#0A0A0A] text-white py-12 md:py-16"
       >
@@ -259,7 +259,7 @@ const HomePage = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Testimonials Section */}
       <div className="bg-gradient-to-r from-[#0A0A0A] via-[#1C3144]/50 to-[#0A0A0A] text-white py-12 md:py-16">

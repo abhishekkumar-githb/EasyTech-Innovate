@@ -45,44 +45,44 @@ export const homeConfig = {
       "Agile and collaborative approach",
     ],
   },
-  pricing: [
-    {
-      name: "Starter",
-      price: 499,
-      features: [
-        "Basic Website Development",
-        "Responsive Design",
-        "SEO Optimization",
-        "1 Month Support",
-      ],
-      recommended: false,
-    },
-    {
-      name: "Professional",
-      price: 999,
-      features: [
-        "Custom Web Application",
-        "Advanced UI/UX Design",
-        "Performance Optimization",
-        "3 Months Support",
-        "Analytics Integration",
-      ],
-      recommended: true,
-    },
-    {
-      name: "Enterprise",
-      price: 1999,
-      features: [
-        "Full-Stack Development",
-        "Custom CRM/ERP Solutions",
-        "Advanced Security",
-        "Dedicated Support",
-        "Ongoing Consultation",
-        "Cloud Infrastructure",
-      ],
-      recommended: false,
-    },
-  ],
+  // pricing: [
+  //   {
+  //     name: "Starter",
+  //     price: 499,
+  //     features: [
+  //       "Basic Website Development",
+  //       "Responsive Design",
+  //       "SEO Optimization",
+  //       "1 Month Support",
+  //     ],
+  //     recommended: false,
+  //   },
+  //   {
+  //     name: "Professional",
+  //     price: 999,
+  //     features: [
+  //       "Custom Web Application",
+  //       "Advanced UI/UX Design",
+  //       "Performance Optimization",
+  //       "3 Months Support",
+  //       "Analytics Integration",
+  //     ],
+  //     recommended: true,
+  //   },
+  //   {
+  //     name: "Enterprise",
+  //     price: 1999,
+  //     features: [
+  //       "Full-Stack Development",
+  //       "Custom CRM/ERP Solutions",
+  //       "Advanced Security",
+  //       "Dedicated Support",
+  //       "Ongoing Consultation",
+  //       "Cloud Infrastructure",
+  //     ],
+  //     recommended: false,
+  //   },
+  // ],
   testimonials: [
     {
       name: "Sarah Anderson",
