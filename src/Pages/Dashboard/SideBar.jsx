@@ -1,48 +1,41 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { sidebarConfig } from "./dashboardConfig.js";
 
 const Sidebar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [activeItem, setActiveItem] = useState("home");
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-
-  const handleItemClick = (itemId) => {
-    setIsExpanded(true);
-    setActiveItem(itemId);
-    if (itemId !== "profile") {
-      setIsProfileOpen(false);
-    }
-  };
+  const location = useLocation();
 
   const handleProfileClick = () => {
     setIsExpanded(true);
     setIsProfileOpen(!isProfileOpen);
-    setActiveItem("profile");
   };
 
   const NavItem = ({ item }) => {
     const Icon = item.icon;
-    const itemId = item.label || item.id;
+    const isActive = location.pathname === item.path;
+    
     return (
-      <button
-        onClick={() => handleItemClick(itemId)}
+      <Link
+        to={item.path}
         className={`w-full flex items-center px-4 py-3 transition-colors duration-300
-          ${activeItem === itemId 
+          ${isActive 
             ? "text-[#00FFFF] bg-[#1C3144]/40" 
             : "text-gray-300 hover:bg-[#1C3144]/20 hover:text-[#00FFFF]"}`}
       >
         <span className="flex items-center justify-center min-w-[24px]">
-          <Icon size={20} className={activeItem === itemId ? "text-[#FF00A6]" : ""} />
+          <Icon size={20} className={isActive ? "text-[#FF00A6]" : ""} />
         </span>
         {isExpanded && <span className="ml-4 text-sm">{item.title}</span>}
-      </button>
+      </Link>
     );
   };
 
   return (
     <div
-      className={`fixed left-0 top-0 h-screen bg-gradient-to-r from-[#0A0A0A]  to-[#0A0A0A] 
+      className={`fixed left-0 top-0 h-screen bg-gradient-to-r from-[#0A0A0A] to-[#0A0A0A] 
         transition-all duration-300 ease-in-out flex flex-col
         ${isExpanded ? "w-64" : "w-16"}`}
     >
@@ -59,7 +52,7 @@ const Sidebar = () => {
       {/* Main Navigation Items */}
       <nav className="mt-5 flex-1">
         {sidebarConfig.mainMenuItems.map((item) => (
-          <NavItem key={item.label || item.id} item={item} />
+          <NavItem key={item.label} item={item} />
         ))}
       </nav>
 
@@ -69,14 +62,14 @@ const Sidebar = () => {
         <button
           onClick={handleProfileClick}
           className={`w-full flex items-center px-4 py-3 transition-colors duration-300
-            ${activeItem === "profile" 
+            ${location.pathname === "/dashboard/profile" 
               ? "text-[#00FFFF] bg-[#1C3144]/40" 
               : "text-gray-300 hover:bg-[#1C3144]/20 hover:text-[#00FFFF]"}`}
         >
           <span className="flex items-center justify-center min-w-[24px]">
             <sidebarConfig.profileMenu.main.icon 
               size={20} 
-              className={activeItem === "profile" ? "text-[#FF00A6]" : ""} 
+              className={location.pathname === "/dashboard/profile" ? "text-[#FF00A6]" : ""} 
             />
           </span>
           {isExpanded && (
@@ -90,16 +83,16 @@ const Sidebar = () => {
         {isProfileOpen && isExpanded && (
           <div className="bg-[#1C3144]/30 text-gray-300">
             {sidebarConfig.profileMenu.subItems.map((item) => (
-              <button
+              <Link
                 key={item.label}
-                onClick={() => handleItemClick(item.label)}
+                to={`/dashboard/profile/${item.label.toLowerCase()}`}
                 className="w-full flex items-center px-4 py-2 hover:bg-[#1C3144]/40 hover:text-[#00FFFF] transition-colors duration-300"
               >
                 <span className="flex items-center justify-center min-w-[24px]">
                   <item.icon size={18} />
                 </span>
                 <span className="ml-4 text-sm">{item.title}</span>
-              </button>
+              </Link>
             ))}
           </div>
         )}

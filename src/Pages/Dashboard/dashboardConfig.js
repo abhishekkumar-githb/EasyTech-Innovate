@@ -12,12 +12,13 @@ import {
 export const sidebarConfig = {
   title: "EasyTech Innovate",
   mainMenuItems: [
-    { label: "Home", title: "Home", icon: Home, path: "/" },
-    { label: "search", title: "Search", icon: Search, path: "/" },
-    { label: "insights", title: "Insights", icon: BarChart2, path: "/" },
-    { label: "docs", icon: FileText, title: "Docs", path: "/" },
-    { label: "products", icon: ShoppingBag, title: "Products", path: "/" },
-    { label: "messages", icon: MessageSquare, title: "Messages", path: "/" },
+    { label: "Home", title: "Home", icon: Home, path: "/dashboard" },
+    { label: "Search", title: "Search", icon: Search, path: "/dashboard/search" },
+    { label: "Insights", title: "Insights", icon: BarChart2, path: "/dashboard/insights" },
+    { label: "Docs", icon: FileText, title: "Docs", path: "/dashboard/docs" },
+    { label: "Products", icon: ShoppingBag, title: "Products", path: "/dashboard/products" },
+    { label: "Messages", icon: MessageSquare, title: "Messages", path: "/dashboard/messages" },
+
   ],
   profileMenu: {
     main: { label: "profile", icon: User, title: "Profile", path: "/" },
