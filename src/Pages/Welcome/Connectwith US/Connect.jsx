@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Calendar, Clock, Mail, User, Briefcase, MessageSquare, ArrowRight, X, Phone, Globe, ChevronRight, ChevronLeft } from 'lucide-react';
+/* eslint-disable react/no-unescaped-entities */
+import  { useState } from 'react';
+import { Calendar, Clock, Mail, User,  MessageSquare, ArrowRight, X, Phone, Globe, ChevronRight, ChevronLeft } from 'lucide-react';
 import Navbar from "../../../components/Navbar/Navbar";
 import Footer from "../../../components/Footer/Footer";
 

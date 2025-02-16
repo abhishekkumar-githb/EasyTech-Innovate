@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { X } from "lucide-react"; // Using lucide-react for the close icon
@@ -84,10 +86,10 @@ function Navbar({ scrollToFeatures }) {
               ))}
 
               <Link
-                to="/signin"
+                to="/ConnectWithUs"
                 className="px-6 py-3 text-lg font-semibold bg-[#1C3144] text-white rounded-lg hover:bg-[#00FFFF] hover:text-black transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
               >
-                Get Started
+                Reach Out
               </Link>
             </div>
 
@@ -164,11 +166,11 @@ function Navbar({ scrollToFeatures }) {
               </NavLink>
             ))}
             <Link
-              to="/signin"
+              to="/ConnectWithUs"
               onClick={closeMobileMenu}
               className="mt-8 px-6 py-4 text-xl font-semibold bg-[#1C3144] text-white rounded-lg hover:bg-[#00FFFF] hover:text-black text-center transition-all duration-300"
             >
-              Get Started
+              Reach Out
             </Link>
           </div>
         </div>
