@@ -18,7 +18,7 @@ export const footerConfig = {
       { name: "Mobile Solutions", to: "#" },
       { name: "Cloud Engineering", to: "#" },
       { name: "AI/ML Consulting", to: "#" },
-      { name: "Cybersecurity", to: "#" },
+      { name: "App Publishing", to: "#" },
     ],
     
     contact: {
