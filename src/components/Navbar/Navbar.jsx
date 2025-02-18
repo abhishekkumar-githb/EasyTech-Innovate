@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { X } from "lucide-react"; // Using lucide-react for the close icon
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { X } from "lucide-react";
 
 function Navbar({ scrollToFeatures }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +20,11 @@ function Navbar({ scrollToFeatures }) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    closeMobileMenu();
+  }, [location]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -42,10 +48,10 @@ function Navbar({ scrollToFeatures }) {
       <nav
         className={`
           fixed top-0 left-0 right-0 z-50 transition-all duration-300
-          ${isScrolled
+          ${isScrolled ? "bg-[#0A0A0A]" : "bg-[#0A0A0A]"}
+          md:${isScrolled
             ? "bg-[#0A0A0A]/90 backdrop-blur-md shadow-lg"
-            : "bg-gradient-to-r from-[#0A0A0A] via-[#1C3144]/50 to-[#0A0A0A]"
-          }
+            : "bg-gradient-to-r from-[#0A0A0A] via-[#1C3144]/50 to-[#0A0A0A]"}
         `}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -132,10 +138,10 @@ function Navbar({ scrollToFeatures }) {
           </div>
         </div>
 
-        {/* Mobile Menu with Close Button */}
+        {/* Mobile Menu */}
         <div
           className={`
-            fixed inset-0 z-50 bg-gradient-to-br from-[#0A0A0A] via-[#1C3144]/95 to-[#0A0A0A]
+            fixed inset-0 z-50 bg-[#0A0A0A] 
             transform transition-all duration-300 ease-in-out
             ${isMobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}
             md:hidden
