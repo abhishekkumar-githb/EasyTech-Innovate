@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import HomePage from "./Pages/Welcome/HomePage/Homes";
 import AboutUsPage from "./Pages/Welcome/AboutUs/AboutUs";
-import ContactUsPage from "./Pages/Welcome/ContactUs/ContactUs";
+import OurTeamPage from "./Pages/Welcome/OurTeam/OurTeam";
 import ServicesPage from "./Pages/Welcome/Services/Services";
 import PrivacyPolicy from "./Pages/Welcome/Policies/PrivacyPolicy";
 import TermServices from "./Pages/Welcome/Policies/TermServices";
@@ -31,7 +31,7 @@ const App = () => {
         {/* Static Pages */}
         <Route path="/about-us" element={<AboutUsPage />} />
         <Route path="/services" element={<ServicesPage />} />
-        <Route path="/contactus" element={<ContactUsPage />} />
+        <Route path="/ourteam" element={<OurTeamPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/term-services" element={<TermServices />} />
         <Route path="/ConnectWithUs" element={<ConnectWithUs />} />

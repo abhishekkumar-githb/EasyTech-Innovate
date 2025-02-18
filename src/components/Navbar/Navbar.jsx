@@ -40,7 +40,7 @@ function Navbar({ scrollToFeatures }) {
     { name: "Home", to: "/" },
     { name: "Services", to: "/services" },
     { name: "About", to: "/about-us" },
-    { name: "Contact", to: "/contactus" },
+    { name: "Our Team", to: "/ourteam" },
   ];
 
   return (
