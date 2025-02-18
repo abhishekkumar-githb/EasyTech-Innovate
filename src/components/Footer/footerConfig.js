@@ -14,9 +14,9 @@ export const footerConfig = {
     ],
     
     expertise: [
-      { name: "Web Development", to: "#" },
-      { name: "Mobile Solutions", to: "#" },
-      { name: "Cloud Engineering", to: "#" },
+      { name: "Web Application", to: "#" },
+      { name: "Mobile Application", to: "#" },
+      { name: "Deployment & Cloud Services", to: "#" },
       { name: "AI/ML Consulting", to: "#" },
       { name: "App Publishing", to: "#" },
     ],
