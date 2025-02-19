@@ -1,5 +1,8 @@
 // teamConfig.jsx
 import img from "../../../assets/testimonials.webp";
+import img2 from "../../../assets/img2.jpg";
+
+
 
 export const teamMembers = [
   {
@@ -55,10 +58,10 @@ export const teamMembers = [
   },
   {
     id: 4,
-    name: "Ayush",
+    name: "Ayesha",
     role: "UX Design Director",
     department: "design",
-    image: img,
+    image: img2,
     skills: ["React", "Node.js", "AWS", "GraphQL"],
     experience: "6+ years",
     projects: ["E-commerce Platform", "Real-time Dashboard"],
