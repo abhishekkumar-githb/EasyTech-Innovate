@@ -59,7 +59,7 @@ export const teamMembers = [
   {
     id: 4,
     name: "Ayesha",
-    role: "UX Design Director",
+    role: "UX Design ",
     department: "design",
     image: img2,
     skills: ["React", "Node.js", "AWS", "GraphQL"],
