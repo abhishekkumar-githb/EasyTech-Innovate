@@ -64,16 +64,52 @@ const ContactScheduler = () => {
     return Object.keys(errors).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateStep()) {
+// Add this function before your ContactScheduler component
+const sendToGoogleSheets = async (formData) => {
+  try {
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzTlLA9yh_VnewHaOnTXnACZspBzLsJziPgWuWfpxR5EOr7fepDPBpPDCjApKTamQ0M/exec'; // Replace with your script URL from Step 2
+    
+    const response = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(formData),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      mode: 'no-cors' // This is important when working with Google Apps Script
+    });
+    
+    return true;
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    return false;
+  }
+};
+
+// Modify your handleSubmit function in the ContactScheduler component
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (validateStep()) {
+    // Show loading state if desired
+    // setIsSubmitting(true);
+    
+    // Send data to Google Sheets
+    const success = await sendToGoogleSheets(formData);
+    
+    if (success) {
       setShowPopup(true);
       // Clear form data after successful submission
       setFormData({...initialFormData});
       // Reset to first step
       setCurrentStep(1);
+    } else {
+      // Handle error - maybe show an error message
+      alert("There was an error submitting your form. Please try again.");
     }
-  };
+    
+    // Remove loading state if implemented
+    // setIsSubmitting(false);
+  }
+};
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -596,40 +632,7 @@ const ContactScheduler = () => {
         </div>
       </div>
 
-      {/* FAQ Section */}
-      {/* <div className="max-w-4xl mx-auto px-4 sm:px-6 mb-16">
-        <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">Frequently Asked Questions</h2>
-          <p className="text-gray-300">Everything you need to know about our consultation process</p>
-        </div>
-        
-        <div className="space-y-4">
-          {[
-            {
-              question: "What happens during the initial consultation?",
-              answer: "During the 30-minute consultation, we'll discuss your project needs, goals, and challenges. Our expert will provide preliminary insights and outline potential approaches to your specific situation."
-            },
-            {
-              question: "How soon can I expect a proposal after our call?",
-              answer: "We typically deliver a detailed proposal within 24-48 hours following our consultation. The proposal will include scope, timeline, budget estimates, and recommended solutions."
-            },
-            {
-              question: "Can I reschedule my consultation if needed?",
-              answer: "Absolutely! You can reschedule using the link in your confirmation email. We ask for at least 24 hours notice if possible."
-            },
-            {
-              question: "What information should I prepare before the call?",
-              answer: "To make the most of our time, please prepare any existing documentation, project requirements, and specific questions you'd like addressed during the consultation."
-            }
-          ].map((faq, index) => (
-            <div key={index} className="bg-slate-800/20 p-5 rounded-xl border border-cyan-400/10">
-              <h3 className="text-lg font-semibold text-white mb-2">{faq.question}</h3>
-              <p className="text-gray-300 text-sm">{faq.answer}</p>
-            </div>
-          ))}
-        </div>
-      </div> */}
-
+      
       {/* CSS for animations */}
       <style jsx>{`
         @keyframes fadeIn {

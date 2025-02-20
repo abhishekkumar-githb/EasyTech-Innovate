@@ -115,7 +115,7 @@ const HeroSection = ({ onConsultation, onPortfolio }) => (
 );
 
 // CTA Section Component
-const CTASection = ({ onConsultation, onPortfolio }) => (
+const CTASection = ({ onConsultation}) => (
   <div className="max-w-7xl mx-auto px-4 py-20">
     <div className="relative group">
       <div className="relative bg-[#1C3144]/30 rounded-xl p-12 border border-[#00FFFF]/20 text-center">
@@ -132,12 +132,12 @@ const CTASection = ({ onConsultation, onPortfolio }) => (
             <span>Schedule Consultation</span>
             <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-500" />
           </button>
-          <button 
+          {/* <button 
             onClick={onPortfolio}
             className="border-2 border-[#00FFFF] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#00FFFF]/10 transition-all duration-500"
           >
             View Portfolio
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
@@ -155,7 +155,7 @@ const ServicesPage = () => {
   };
 
   const handlePortfolio = () => {
-    window.open('https://portfolio-two-eta-86.vercel.app/', '_blank'); 
+    window.open('#', '_blank'); 
   };
 
   const scrollToFeatures = () => {
