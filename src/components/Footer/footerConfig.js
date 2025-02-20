@@ -1,6 +1,6 @@
 export const footerConfig = {
     company: {
-      name: "EasyTech",
+      name: "EasyTech Innovate",
       shortName: "ET",
       description: "Your vision, our expertise. Creating sustainable digital solutions that drive business growth and technological advancement."
     },

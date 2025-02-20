@@ -12,14 +12,13 @@ import {
   Minus,
 } from "lucide-react";
 import { footerConfig } from "./footerConfig.js";
+import Logo from "../../assets/Logo.jpeg";
 
 const Footer = () => {
   const { company, navigation, expertise, contact, social, legal } = footerConfig;
   
-  // State for mobile accordion sections
   const [expandedSection, setExpandedSection] = useState("");
   
-  // Toggle section expand/collapse
   const toggleSection = (section) => {
     if (expandedSection === section) {
       setExpandedSection("");
@@ -28,7 +27,6 @@ const Footer = () => {
     }
   };
   
-  // Icon mapping for social media
   const IconMap = {
     Linkedin,
     Instagram,
@@ -38,7 +36,6 @@ const Footer = () => {
 
   return (
     <footer className="bg-gradient-to-r from-[#0A0A0A] via-[#1C3144]/50 to-[#0A0A0A]">
-      {/* Colored top border */}
       <div className="grid grid-cols-6">
         <div className="h-1 bg-blue-400"></div>
         <div className="h-1 bg-cyan-400"></div>
@@ -49,14 +46,12 @@ const Footer = () => {
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Desktop View */}
         <div className="hidden md:flex flex-col lg:flex-row justify-between gap-12 mb-12">
-          {/* Company Info */}
           <div className="w-full lg:w-1/3 space-y-6">
             <div className="flex items-center space-x-3">
               <div className="w-12 h-12 rounded bg-gradient-to-r from-[#00FFFF] to-[#FF00A6] p-[2px]">
-                <div className="w-full h-full bg-black flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">{company.shortName}</span>
+                <div className="w-full h-full bg-black flex items-center justify-center rounded-sm overflow-hidden">
+                  <img src={Logo} alt="EasyTech Logo" className="w-full h-full object-cover" />
                 </div>
               </div>
               <span className="text-white text-xl font-bold">{company.name}</span>
@@ -66,7 +61,6 @@ const Footer = () => {
               {company.description}
             </p>
             
-            {/* Contact Info */}
             <div className="space-y-4 pt-4">
               <h4 className="text-white text-lg font-medium mb-4">Contact Us</h4>
               <a 
@@ -90,9 +84,7 @@ const Footer = () => {
             </div>
           </div>
           
-          {/* Navigation Links - Desktop */}
           <div className="flex flex-1 justify-between gap-8">
-            {/* Quick Navigation */}
             <div className="space-y-6">
               <h4 className="text-white text-lg font-medium">Quick Links</h4>
               <ul className="space-y-3">
@@ -109,7 +101,6 @@ const Footer = () => {
               </ul>
             </div>
             
-            {/* Our Expertise */}
             <div className="space-y-6">
               <h4 className="text-white text-lg font-medium">Our Expertise</h4>
               <ul className="space-y-3">
@@ -126,7 +117,6 @@ const Footer = () => {
               </ul>
             </div>
             
-            {/* Social Media */}
             <div className="space-y-6">
               <h4 className="text-white text-lg font-medium">Follow Us</h4>
               <div className="grid grid-cols-2 gap-4">
@@ -152,14 +142,12 @@ const Footer = () => {
           </div>
         </div>
         
-        {/* Mobile View - Accordion Style */}
         <div className="md:hidden space-y-6">
-          {/* Company Info - Mobile */}
           <div className="text-center pb-6 border-b border-gray-800">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <div className="w-10 h-10 rounded bg-gradient-to-r from-[#00FFFF] to-[#FF00A6] p-[2px]">
-                <div className="w-full h-full bg-black flex items-center justify-center">
-                  <span className="text-white font-bold">{company.shortName}</span>
+                <div className="w-full h-full bg-black flex items-center justify-center rounded-sm overflow-hidden">
+                  <img src={Logo} alt="EasyTech Logo" className="w-full h-full object-cover" />
                 </div>
               </div>
               <span className="text-white text-xl font-bold">{company.name}</span>
@@ -169,7 +157,6 @@ const Footer = () => {
               {company.description}
             </p>
             
-            {/* Social Media - Mobile */}
             <div className="flex justify-center space-x-4">
               {social.map((item) => {
                 const Icon = IconMap[item.icon];
@@ -189,7 +176,6 @@ const Footer = () => {
             </div>
           </div>
           
-          {/* Quick Links - Mobile Accordion */}
           <div className="border-b border-gray-800 pb-4">
             <button 
               onClick={() => toggleSection("navigation")}
@@ -220,7 +206,6 @@ const Footer = () => {
             )}
           </div>
           
-          {/* Expertise - Mobile Accordion */}
           <div className="border-b border-gray-800 pb-4">
             <button 
               onClick={() => toggleSection("expertise")}
@@ -251,7 +236,6 @@ const Footer = () => {
             )}
           </div>
           
-          {/* Contact - Mobile Accordion */}
           <div className="border-b border-gray-800 pb-4">
             <button 
               onClick={() => toggleSection("contact")}
@@ -291,7 +275,6 @@ const Footer = () => {
           </div>
         </div>
         
-        {/* Copyright Section - Both Views */}
         <div className="pt-8 mt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-500 text-sm mb-4 md:mb-0 text-center md:text-left">
