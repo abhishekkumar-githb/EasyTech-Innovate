@@ -1,8 +1,7 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { X } from "lucide-react";
+import Logo from "../../assets/Logo.jpeg";
 
 function Navbar({ scrollToFeatures }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -21,19 +20,18 @@ function Navbar({ scrollToFeatures }) {
     };
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     closeMobileMenu();
   }, [location]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-    document.body.style.overflow = !isMobileMenuOpen ? 'hidden' : 'unset';
+    document.body.style.overflow = !isMobileMenuOpen ? "hidden" : "unset";
   };
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = "unset";
   };
 
   const navItems = [
@@ -45,32 +43,21 @@ function Navbar({ scrollToFeatures }) {
 
   return (
     <>
-      <nav
-        className={`
-          fixed top-0 left-0 right-0 z-50 transition-all duration-300
-          ${isScrolled ? "bg-[#0A0A0A]" : "bg-[#0A0A0A]"}
-          md:${isScrolled
-            ? "bg-[#0A0A0A]/90 backdrop-blur-md shadow-lg"
-            : "bg-gradient-to-r from-[#0A0A0A] via-[#1C3144]/50 to-[#0A0A0A]"}
-        `}
-      >
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
-            {/* Logo */}
+            {/* Desktop Logo */}
             <Link
               to="/"
-              className="flex items-center transform transition-transform duration-300 hover:scale-105"
+              className="flex items-center space-x-3"
               onClick={closeMobileMenu}
             >
-              <span
-                className={`
-                  text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text
-                  ${isScrolled
-                    ? "bg-gradient-to-r from-[#00FFFF] to-[#FF00A6]"
-                    : "bg-gradient-to-r from-[#00FFFF] to-[#FF00A6] hover:from-[#FF00A6] hover:to-[#00FFFF] transition-all duration-500"
-                  }
-                `}
-              >
+              <img
+                src={Logo}
+                alt="EasyTech Logo"
+                className="h-12 w-12 sm:h-14 sm:w-14 rounded-full" // Increased logo size
+              />
+              <span className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00FFFF] to-[#FF00A6]">
                 EasyTech Innovate
               </span>
             </Link>
@@ -81,19 +68,20 @@ function Navbar({ scrollToFeatures }) {
                 <NavLink
                   key={item.name}
                   to={item.to}
-                  className={({ isActive }) => `
-                    text-lg font-semibold transition-colors duration-300 group relative
-                    ${isActive ? 'text-[#00FFFF]' : 'text-gray-300 hover:text-[#00FFFF]'}
-                  `}
+                  className={({ isActive }) =>
+                    `text-lg font-semibold ${
+                      isActive
+                        ? "text-[#00FFFF]"
+                        : "text-gray-300 hover:text-[#00FFFF]"
+                    }`
+                  }
                 >
                   {item.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FF00A6] transition-all duration-300 group-hover:w-full"></span>
                 </NavLink>
               ))}
-
               <Link
                 to="/ConnectWithUs"
-                className="px-6 py-3 text-lg font-semibold bg-[#1C3144] text-white rounded-lg hover:bg-[#00FFFF] hover:text-black transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                className="px-6 py-3 text-lg font-semibold bg-gradient-to-r from-[#00FFFF] to-[#FF00A6] text-black rounded-lg hover:opacity-90 transition-all"
               >
                 Reach Out
               </Link>
@@ -102,23 +90,10 @@ function Navbar({ scrollToFeatures }) {
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMobileMenu}
-              className="md:hidden p-2 rounded-lg text-[#00FFFF] hover:bg-[#1C3144]/30 transition-all duration-300"
-              aria-label="Toggle mobile menu"
+              className="md:hidden p-2 text-[#00FFFF]"
             >
               {isMobileMenuOpen ? (
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+                <X className="w-6 h-6" />
               ) : (
                 <svg
                   className="w-6 h-6"
@@ -141,47 +116,79 @@ function Navbar({ scrollToFeatures }) {
         {/* Mobile Menu */}
         <div
           className={`
-            fixed inset-0 z-50 bg-[#0A0A0A] 
-            transform transition-all duration-300 ease-in-out
-            ${isMobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}
-            md:hidden
+            fixed inset-0 bg-black/95 md:hidden
+            transform transition-transform duration-300 ease-in-out
+            ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}
           `}
         >
-          {/* Close Button */}
-          <button
-            onClick={closeMobileMenu}
-            className="absolute top-4 right-4 p-2 rounded-full bg-[#1C3144]/50 text-[#00FFFF] hover:bg-[#1C3144] transition-all duration-300 transform hover:scale-110"
-            aria-label="Close menu"
-          >
-            <X size={24} />
-          </button>
-
-          <div className="flex flex-col h-full pt-20 px-6">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.name}
-                to={item.to}
+          <div className="flex flex-col h-full relative">
+            {/* Mobile Header with Logo and Close Button */}
+            <div className="flex items-center justify-between p-4 border-b border-gray-800">
+              <Link
+                to="/"
+                className="flex items-center space-x-2"
                 onClick={closeMobileMenu}
-                className={({ isActive }) => `
-                  py-4 text-xl font-semibold border-b border-gray-700
-                  ${isActive ? 'text-[#00FFFF]' : 'text-gray-300'}
-                  transition-colors duration-300 hover:text-[#00FFFF]
-                `}
               >
-                {item.name}
-              </NavLink>
-            ))}
-            <Link
-              to="/ConnectWithUs"
-              onClick={closeMobileMenu}
-              className="mt-8 px-6 py-4 text-xl font-semibold bg-[#1C3144] text-white rounded-lg hover:bg-[#00FFFF] hover:text-black text-center transition-all duration-300"
-            >
-              Reach Out
-            </Link>
+                <img
+                  src={Logo}
+                  alt="EasyTech Logo"
+                  className="h-8 w-8 rounded-full"
+                />
+                <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00FFFF] to-[#FF00A6]">
+                  EasyTech
+                </span>
+              </Link>
+              <button
+                onClick={closeMobileMenu}
+                className="p-2 rounded-full bg-[#1C3144]/50 text-[#00FFFF] hover:bg-[#1C3144] transition-all duration-300"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Menu Items */}
+            <div className="flex flex-col pt-8 px-6">
+              {navItems.map((item, index) => (
+                <NavLink
+                  key={item.name}
+                  to={item.to}
+                  onClick={closeMobileMenu}
+                  className={({ isActive }) =>
+                    `relative text-2xl font-semibold py-4
+                    ${isActive ? "text-[#00FFFF]" : "text-gray-300"} 
+                    transition-all duration-300 hover:text-[#00FFFF]
+                    ${
+                      index !== navItems.length - 1
+                        ? "border-b border-gray-800"
+                        : ""
+                    }
+                    group`
+                  }
+                >
+                  <span className="relative inline-block">
+                    {item.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00FFFF] transition-all duration-300 group-hover:w-full"></span>
+                  </span>
+                </NavLink>
+              ))}
+
+              <Link
+                to="/ConnectWithUs"
+                onClick={closeMobileMenu}
+                className="mt-8 relative group"
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-[#00FFFF] to-[#FF00A6] rounded-lg blur opacity-50 group-hover:opacity-75 transition-opacity"></span>
+                <span className="relative block px-8 py-3 text-xl font-semibold bg-gradient-to-r from-[#00FFFF] to-[#FF00A6] rounded-lg text-black text-center">
+                  Reach Out
+                </span>
+              </Link>
+            </div>
+
+            {/* Bottom Gradient */}
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#1C3144] to-transparent pointer-events-none opacity-50"></div>
           </div>
         </div>
       </nav>
-
       <div className="h-16 sm:h-20"></div>
     </>
   );
