@@ -1,6 +1,8 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useRef, useState } from "react";
+import { Link } from 'react-router-dom';
 import {
   ArrowRight,
   Check,
@@ -32,7 +34,6 @@ const TestimonialCard = ({ image, quote, name, position, rating }) => (
         ))}
       </div>
 
-     
       <p className="text-gray-300 text-base italic mb-6">"{quote}"</p>
 
       <div className="flex flex-col items-center">
@@ -121,9 +122,12 @@ const HomePage = () => {
                   ))}
                 </ul>
               </div>
-              <button className="mx-auto lg:mx-0 block w-full max-w-xs bg-[#1C3144] text-white px-6 py-3 rounded-lg hover:bg-[#00FFFF] hover:text-black transition-colors duration-300 flex items-center justify-center shadow-lg hover:shadow-xl">
+              <Link 
+                to="/ConnectWithUs"
+                className="mx-auto lg:mx-0 block w-full max-w-xs bg-[#1C3144] text-white px-6 py-3 rounded-lg hover:bg-[#00FFFF] hover:text-black transition-colors duration-300 flex items-center justify-center shadow-lg hover:shadow-xl"
+              >
                 Schedule a Meeting <ArrowRight className="ml-2" size={20} />
-              </button>
+              </Link>
             </div>
 
             <div className="flex justify-center lg:ml-auto">
@@ -198,68 +202,6 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-
-      {/* Pricing Section */}
-      {/* <div
-        ref={pricingRef}
-        className="bg-gradient-to-r from-[#0A0A0A] via-[#1C3144]/50 to-[#0A0A0A] text-white py-12 md:py-16"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">
-              Our <span className="text-[#00FFFF]">Pricing Plans</span>
-            </h2>
-            <p className="text-sm md:text-base text-gray-300 max-w-2xl mx-auto">
-              Flexible solutions tailored to your business needs, with
-              transparent pricing and comprehensive services.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {homeConfig.pricing.map((plan) => (
-              <div
-                key={plan.name}
-                className={`
-                  bg-[#1C3144]/30 p-4 md:p-6 rounded-xl border 
-                  ${
-                    plan.recommended
-                      ? "border-[#00FFFF] shadow-xl"
-                      : "border-[#1C3144]/50"
-                  }
-                  hover:bg-[#1C3144]/50 transition-all duration-300
-                `}
-              >
-                {plan.recommended && (
-                  <div className="text-center bg-[#00FFFF] text-black py-1 rounded-t-xl -mx-4 md:-mx-6 -mt-4 md:-mt-6 mb-4">
-                    Most Popular
-                  </div>
-                )}
-                <h3 className="text-xl md:text-2xl font-semibold text-[#00FFFF] mb-3 md:mb-4 text-center">
-                  {plan.name}
-                </h3>
-                <div className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-center">
-                  ${plan.price}
-                  <span className="text-xs md:text-sm text-gray-400">
-                    {" "}
-                    /project
-                  </span>
-                </div>
-                <ul className="space-y-2 md:space-y-3 mb-4 md:mb-6">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-center">
-                      <Check className="text-[#00FFFF] mr-2" size={16} />
-                      <span className="text-sm md:text-base">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <button className="w-full bg-[#1C3144] text-white py-2 md:py-3 rounded-lg hover:bg-[#00FFFF] hover:text-black transition-colors text-sm md:text-base">
-                  Select Plan
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div> */}
 
       {/* Testimonials Section */}
       <div className="bg-gradient-to-r from-[#0A0A0A] via-[#1C3144]/50 to-[#0A0A0A] text-white py-12 md:py-16">

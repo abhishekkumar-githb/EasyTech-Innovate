@@ -13,10 +13,127 @@ import {
   CheckCircle,
   ArrowRight,
   ChevronDown,
+  X,
 } from "lucide-react";
 import Navbar from "../../../components/Navbar/Navbar";
 import Footer from "../../../components/Footer/Footer";
 import TeamMember from "../../../assets/TeamMember.webp"
+
+// Career Popup Modal Component
+const CareerModal = ({ isOpen, onClose, onSubmit }) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(formData);
+    setSubmitted(true);
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
+      <div className="relative bg-gradient-to-br from-[#1C3144] to-[#0A0A0A] rounded-2xl p-8 max-w-md w-full border border-[#00FFFF]/30 shadow-xl">
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+        >
+          <X className="w-6 h-6" />
+        </button>
+
+        {submitted ? (
+          <div className="text-center py-8">
+            <CheckCircle className="w-16 h-16 text-[#00FFFF] mx-auto mb-6" />
+            <h2 className="text-2xl font-bold mb-4">Thank You!</h2>
+            <p className="text-gray-300 mb-6">
+              We've received your information and will contact you if any opportunities match your profile.
+            </p>
+            <button
+              onClick={onClose}
+              className="bg-gradient-to-r from-[#00FFFF] to-[#FF00A6] text-black px-6 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity"
+            >
+              Close
+            </button>
+          </div>
+        ) : (
+          <>
+            <h2 className="text-2xl font-bold mb-2 text-center">Career Opportunities</h2>
+            <div className="h-1 w-20 bg-gradient-to-r from-[#00FFFF] to-[#FF00A6] mx-auto mb-6"></div>
+            
+            <p className="text-gray-300 mb-6 text-center">
+              No open positions currently available, but we're always interested in meeting talented individuals. Leave your details and we'll contact you when opportunities arise.
+            </p>
+
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label htmlFor="name" className="block text-gray-300 mb-2">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full bg-[#1C3144]/50 border border-[#00FFFF]/20 rounded-lg p-3 text-white focus:border-[#00FFFF] focus:outline-none transition-colors"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label htmlFor="email" className="block text-gray-300 mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full bg-[#1C3144]/50 border border-[#00FFFF]/20 rounded-lg p-3 text-white focus:border-[#00FFFF] focus:outline-none transition-colors"
+                  required
+                />
+              </div>
+
+              <div className="mb-6">
+                <label htmlFor="message" className="block text-gray-300 mb-2">
+                  Brief introduction (optional)
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows="3"
+                  className="w-full bg-[#1C3144]/50 border border-[#00FFFF]/20 rounded-lg p-3 text-white focus:border-[#00FFFF] focus:outline-none transition-colors"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-[#00FFFF] to-[#FF00A6] text-black p-3 rounded-full font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+              >
+                Submit Application
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            </form>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
 
 // Team Member Card Component
 const TeamMemberCard = ({ image, name, role, description }) => (
@@ -135,6 +252,21 @@ const ScrollProgress = () => {
 };
 
 const AboutUsPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSubmitApplication = (formData) => {
+    console.log("Application submitted:", formData);
+    // Here you would typically send this data to your backend
+  };
+
   const teamMembers = [
     {
       image: TeamMember,
@@ -374,13 +506,23 @@ const AboutUsPage = () => {
               We're always looking for talented individuals who share our
               passion for innovation and excellence.
             </p>
-            <button className="inline-flex items-center gap-2 bg-gradient-to-r from-[#00FFFF] to-[#FF00A6] text-black px-8 py-4 rounded-full font-semibold hover:opacity-90 transition-opacity group">
+            <button 
+              onClick={handleOpenModal}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#00FFFF] to-[#FF00A6] text-black px-8 py-4 rounded-full font-semibold hover:opacity-90 transition-opacity group"
+            >
               View Career Opportunities
               <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
         </div>
       </div>
+
+      {/* Career Modal */}
+      <CareerModal 
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onSubmit={handleSubmitApplication}
+      />
 
       <Footer />
     </div>
