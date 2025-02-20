@@ -24,7 +24,7 @@ export const footerConfig = {
     contact: {
       email: "contact@easytech.com",
       phone: "+91 6206761669",
-      location: "Banglore, Karnataka",
+      location: "Bangalore, Karnataka",
     },
     
     social: [
