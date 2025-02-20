@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
-import  { useRef } from 'react';
+import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Code2,
   Smartphone,
@@ -81,7 +82,7 @@ const ProcessStep = ({ number, title, description }) => (
 );
 
 // Hero Section Component
-const HeroSection = () => (
+const HeroSection = ({ onConsultation, onPortfolio }) => (
   <div className="relative bg-gradient-to-r from-[#0A0A0A] via-[#1C3144]/50 to-[#0A0A0A] py-32">
     <div className="relative max-w-7xl mx-auto px-4">
       <div className="text-center max-w-3xl mx-auto">
@@ -94,11 +95,17 @@ const HeroSection = () => (
           Our expert team delivers innovative solutions tailored to your needs.
         </p>
         <div className="flex flex-col sm:flex-row gap-6 justify-center">
-          <button className="group bg-[#00FFFF] text-black px-8 py-4 rounded-lg font-semibold hover:bg-[#FF00A6] hover:text-white transition-all duration-500 flex items-center justify-center space-x-2">
+          <button 
+            onClick={onConsultation}
+            className="group bg-[#00FFFF] text-black px-8 py-4 rounded-lg font-semibold hover:bg-[#FF00A6] hover:text-white transition-all duration-500 flex items-center justify-center space-x-2"
+          >
             <span>Get Started</span>
             <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-500" />
           </button>
-          <button className="group border-2 border-[#00FFFF] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#00FFFF]/10 transition-all duration-500">
+          <button 
+            onClick={onPortfolio}
+            className="group border-2 border-[#00FFFF] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#00FFFF]/10 transition-all duration-500"
+          >
             Learn More
           </button>
         </div>
@@ -108,7 +115,7 @@ const HeroSection = () => (
 );
 
 // CTA Section Component
-const CTASection = () => (
+const CTASection = ({ onConsultation, onPortfolio }) => (
   <div className="max-w-7xl mx-auto px-4 py-20">
     <div className="relative group">
       <div className="relative bg-[#1C3144]/30 rounded-xl p-12 border border-[#00FFFF]/20 text-center">
@@ -118,11 +125,17 @@ const CTASection = () => (
           Our team is ready to bring your ideas to life.
         </p>
         <div className="flex flex-col sm:flex-row gap-6 justify-center">
-          <button className="group bg-[#00FFFF] text-black px-8 py-4 rounded-lg font-semibold hover:bg-[#FF00A6] hover:text-white transition-all duration-500 flex items-center justify-center space-x-2">
+          <button 
+            onClick={onConsultation}
+            className="group bg-[#00FFFF] text-black px-8 py-4 rounded-lg font-semibold hover:bg-[#FF00A6] hover:text-white transition-all duration-500 flex items-center justify-center space-x-2"
+          >
             <span>Schedule Consultation</span>
             <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-500" />
           </button>
-          <button className="border-2 border-[#00FFFF] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#00FFFF]/10 transition-all duration-500">
+          <button 
+            onClick={onPortfolio}
+            className="border-2 border-[#00FFFF] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#00FFFF]/10 transition-all duration-500"
+          >
             View Portfolio
           </button>
         </div>
@@ -133,6 +146,26 @@ const CTASection = () => (
 
 // Main Services Page Component
 const ServicesPage = () => {
+  const navigate = useNavigate();
+  const featuresRef = useRef(null);
+  const pricingRef = useRef(null);
+
+  const handleConsultation = () => {
+    navigate('/ConnectWithUs'); 
+  };
+
+  const handlePortfolio = () => {
+    window.open('https://portfolio-two-eta-86.vercel.app/', '_blank'); 
+  };
+
+  const scrollToFeatures = () => {
+    featuresRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollToPricing = () => {
+    pricingRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const services = [
     {
       icon: Code2,
@@ -202,17 +235,6 @@ const ServicesPage = () => {
     }
   ];
 
-  const featuresRef = useRef(null);
-  const pricingRef = useRef(null);
-
-  const scrollToFeatures = () => {
-    featuresRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const scrollToPricing = () => {
-    pricingRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white">
       <Navbar
@@ -221,7 +243,10 @@ const ServicesPage = () => {
       />
       
       {/* Hero Section */}
-      <HeroSection />
+      <HeroSection 
+        onConsultation={handleConsultation}
+        onPortfolio={handlePortfolio}
+      />
 
       {/* Stats Section */}
       <div className="max-w-7xl mx-auto px-4">
@@ -282,7 +307,10 @@ const ServicesPage = () => {
       </div>
 
       {/* CTA Section */}
-      <CTASection />
+      <CTASection 
+        onConsultation={handleConsultation}
+        onPortfolio={handlePortfolio}
+      />
       
       <Footer />
     </div>
