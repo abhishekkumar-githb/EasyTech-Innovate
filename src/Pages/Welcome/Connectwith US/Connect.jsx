@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import { useState, useEffect } from 'react';
 import { Calendar, Clock, Mail, User, MessageSquare, ArrowRight, X, Phone, Globe, ChevronRight, ChevronLeft, CheckCircle, Info } from 'lucide-react';
